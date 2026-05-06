@@ -1,1 +1,571 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>F.lli Romanazzi — Azienda Agricola, Turi (BA)</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --green:#1e3d0f;--green2:#2d5a17;--green3:#3d7a1f;--green-light:#e8f0e0;
+  --orange:#b85c00;--orange2:#d97000;--orange3:#f59322;--orange-light:#fef0dc;
+  --red:#8b1a1a;--red2:#b02020;--red-light:#fdeaea;
+  --cream:#faf6ef;--cream2:#f3ead8;--cream3:#e8d9bc;
+  --brown:#4a2e0e;--brown2:#6b4423;--muted:#7a6a52;
+  --text:#1a120a;--border:rgba(74,46,14,0.12);
+  --shadow:0 4px 24px rgba(30,61,15,0.08);
+}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden;}
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:var(--cream2);}
+::-webkit-scrollbar-thumb{background:var(--green3);border-radius:3px;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 3rem;height:68px;display:flex;justify-content:space-between;align-items:center;background:rgba(250,246,239,0.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+.logo-wrap{display:flex;align-items:center;gap:12px;}
+.logo-img{width:38px;height:38px;border-radius:50%;object-fit:cover;border:2px solid var(--green-light);}
+.logo-text{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:700;color:var(--green);line-height:1.1;}
+.logo-text span{display:block;font-size:0.7rem;font-weight:400;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;font-family:'DM Sans',sans-serif;}
+.nav-links{display:flex;gap:2.5rem;list-style:none;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.85rem;font-weight:500;transition:color 0.2s;position:relative;}
+.nav-links a::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:1px;background:var(--green3);transform:scaleX(0);transition:transform 0.3s;}
+.nav-links a:hover{color:var(--green);}
+.nav-links a:hover::after{transform:scaleX(1);}
+.nav-cta{padding:9px 22px;background:var(--green);color:#fff;border-radius:4px;text-decoration:none;font-size:0.85rem;font-weight:600;transition:background 0.2s;}
+.nav-cta:hover{background:var(--green2);}
+
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:8rem 4rem 4rem;gap:4rem;background:var(--cream);position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;right:-100px;top:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(61,122,31,0.07) 0%,transparent 70%);}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;background:var(--green-light);border:1px solid rgba(61,122,31,0.25);border-radius:50px;font-size:0.72rem;font-weight:600;color:var(--green);letter-spacing:2px;text-transform:uppercase;margin-bottom:2rem;}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,5vw,5.5rem);font-weight:700;line-height:0.95;color:var(--green);margin-bottom:1.5rem;}
+.hero h1 em{color:var(--orange);font-style:italic;display:block;}
+.hero-desc{font-size:1rem;color:var(--muted);line-height:1.8;max-width:440px;margin-bottom:2.5rem;}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;}
+.btn-primary{padding:13px 30px;background:var(--green);color:#fff;border-radius:4px;text-decoration:none;font-weight:600;font-size:0.88rem;transition:all 0.25s;}
+.btn-primary:hover{background:var(--green2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(30,61,15,0.2);}
+.btn-ghost{padding:13px 30px;border:1.5px solid var(--green);color:var(--green);border-radius:4px;text-decoration:none;font-weight:600;font-size:0.88rem;transition:all 0.25s;}
+.btn-ghost:hover{background:var(--green);color:#fff;}
+.hero-stats{display:flex;gap:2rem;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border);}
+.hstat-n{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:700;color:var(--green);line-height:1;}
+.hstat-l{font-size:0.75rem;color:var(--muted);margin-top:3px;}
+
+/* Hero photo grid */
+.hero-fruit-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.fruit-card-hero{border-radius:16px;overflow:hidden;border:1px solid var(--border);background:#fff;box-shadow:var(--shadow);transition:transform 0.3s;}
+.fruit-card-hero:first-child{grid-column:1/-1;}
+.fruit-card-hero:hover{transform:translateY(-3px);}
+.fch-img{height:200px;object-fit:cover;width:100%;display:block;}
+.fch-img-small{height:140px;object-fit:cover;width:100%;display:block;}
+.fch-label{padding:12px 16px;display:flex;align-items:center;justify-content:space-between;}
+.fch-name{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:700;color:var(--green);}
+.fch-season{font-size:0.72rem;color:var(--muted);font-weight:500;}
+
+/* SECTIONS */
+.sec{padding:6rem 4rem;}
+.sec-inner{max-width:1080px;margin:0 auto;}
+.sec-tag{font-size:0.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--orange);font-weight:600;margin-bottom:0.6rem;}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;color:var(--green);line-height:1.1;margin-bottom:0.5rem;}
+.sec-sub{color:var(--muted);font-size:0.95rem;line-height:1.8;max-width:580px;}
+
+/* PRODOTTI */
+.prodotti{background:#fff;}
+.prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3.5rem;}
+.prod-card{border-radius:16px;overflow:hidden;border:1px solid var(--border);background:var(--cream);transition:all 0.3s;}
+.prod-card:hover{transform:translateY(-5px);box-shadow:0 16px 48px rgba(30,61,15,0.12);}
+.prod-img-wrap{position:relative;height:260px;overflow:hidden;}
+.prod-img-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s;}
+.prod-card:hover .prod-img-wrap img{transform:scale(1.06);}
+.prod-img-overlay{position:absolute;bottom:0;left:0;right:0;height:70px;background:linear-gradient(transparent,rgba(26,18,10,0.4));}
+.prod-body{padding:1.8rem;}
+.prod-badge{display:inline-block;padding:4px 12px;border-radius:4px;font-size:0.7rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:1rem;}
+.badge-red{background:var(--red-light);color:var(--red2);}
+.badge-orange{background:var(--orange-light);color:var(--orange);}
+.badge-yellow{background:#fff8e0;color:#a07000;}
+.prod-body h3{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:700;color:var(--green);margin-bottom:0.8rem;}
+.prod-body p{color:var(--muted);font-size:0.88rem;line-height:1.75;margin-bottom:1.2rem;}
+.prod-features{list-style:none;display:flex;flex-direction:column;gap:6px;margin-bottom:1.2rem;}
+.prod-features li{display:flex;align-items:flex-start;gap:8px;font-size:0.82rem;color:var(--brown2);}
+.prod-features li::before{content:'✦';color:var(--orange3);font-size:0.6rem;margin-top:4px;flex-shrink:0;}
+.prod-season{display:flex;align-items:center;gap:6px;font-size:0.78rem;font-weight:600;color:var(--green);padding-top:1rem;border-top:1px solid var(--border);}
+
+/* DIFFERENZE */
+.differenze{background:var(--cream2);}
+.diff-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3.5rem;}
+.diff-card{background:#fff;border-radius:12px;border:1px solid var(--border);overflow:hidden;transition:transform 0.3s,box-shadow 0.3s;}
+.diff-card:hover{transform:translateY(-3px);box-shadow:var(--shadow);}
+.diff-card-img{width:100%;height:130px;object-fit:cover;display:block;}
+.diff-card-body{padding:1.3rem 1.2rem;}
+.diff-card h4{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:700;color:var(--green);margin-bottom:0.5rem;}
+.diff-card p{font-size:0.82rem;color:var(--muted);line-height:1.65;}
+
+/* NEGOZIO */
+.negozio{background:#fff;}
+.negozio-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;margin-top:3.5rem;}
+.negozio-photo{border-radius:20px;overflow:hidden;height:460px;position:relative;}
+.negozio-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+.negozio-photo-overlay{position:absolute;inset:0;background:linear-gradient(160deg,transparent 40%,rgba(30,61,15,0.6));}
+.negozio-photo-tag{position:absolute;top:20px;left:20px;background:var(--green);color:#fff;border-radius:4px;padding:7px 16px;font-size:0.72rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;}
+.negozio-photo-caption{position:absolute;bottom:24px;left:24px;right:24px;}
+.negozio-photo-caption h4{font-family:'Cormorant Garamond',serif;color:#fff;font-size:1.5rem;font-weight:700;text-shadow:0 2px 8px rgba(0,0,0,0.3);}
+.negozio-photo-caption p{color:rgba(255,255,255,0.7);font-size:0.82rem;margin-top:4px;}
+.negozio-info h3{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;color:var(--green);margin-bottom:1rem;}
+.negozio-info p{color:var(--muted);font-size:0.92rem;line-height:1.8;margin-bottom:1.5rem;}
+.info-blocks{display:flex;flex-direction:column;gap:1rem;}
+.info-block{display:flex;align-items:flex-start;gap:14px;padding:1rem 1.2rem;background:var(--cream);border:1px solid var(--border);border-radius:10px;}
+.info-block-icon{font-size:1.2rem;min-width:26px;text-align:center;}
+.info-block-text strong{display:block;font-size:0.7rem;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px;}
+.info-block-text span{font-size:0.88rem;color:var(--brown2);}
+
+/* STAGIONI */
+.stagioni{background:var(--green);padding:5rem 4rem;}
+.stagioni .sec-tag{color:var(--orange3);}
+.stagioni .sec-title{color:#fff;}
+.stagioni .sec-sub{color:rgba(255,255,255,0.6);}
+.stage-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:3.5rem;background:rgba(255,255,255,0.1);border-radius:16px;overflow:hidden;}
+.stage-col{padding:1.5rem 1.3rem;background:rgba(255,255,255,0.04);transition:background 0.2s;}
+.stage-col:hover{background:rgba(255,255,255,0.09);}
+.stage-col-img{width:100%;height:120px;object-fit:cover;border-radius:10px;display:block;margin-bottom:1.2rem;}
+.stage-month{font-size:0.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--orange3);font-weight:700;margin-bottom:0.5rem;}
+.stage-fruit{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:700;color:#fff;margin-bottom:0.4rem;}
+.stage-sub{font-size:0.8rem;color:rgba(255,255,255,0.5);line-height:1.6;}
+.stage-bar{height:3px;border-radius:2px;margin-top:1.2rem;}
+.bar-red{background:linear-gradient(90deg,#e05555,#ff9999);}
+.bar-orange{background:linear-gradient(90deg,var(--orange2),var(--orange3));}
+.bar-mix{background:linear-gradient(90deg,#e05555,var(--orange3));}
+.bar-yellow{background:linear-gradient(90deg,#c49a00,#f0d060);}
+
+/* CONTATTI */
+.contatti{background:var(--cream2);}
+.cont-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:4rem;margin-top:3.5rem;align-items:start;}
+.cont-left h3{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:700;color:var(--green);margin-bottom:0.8rem;}
+.cont-left p{color:var(--muted);font-size:0.9rem;line-height:1.8;margin-bottom:2rem;}
+.contact-cards{display:flex;flex-direction:column;gap:1rem;}
+.contact-card{display:flex;align-items:center;gap:16px;padding:1.1rem 1.4rem;background:#fff;border:1px solid var(--border);border-radius:10px;text-decoration:none;color:inherit;transition:all 0.2s;}
+.contact-card:hover{border-color:var(--green3);transform:translateX(4px);}
+.cc-icon{width:42px;height:42px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+.cc-icon.green{background:var(--green-light);}
+.cc-icon.orange{background:var(--orange-light);}
+.cc-icon.red{background:var(--red-light);}
+.cc-text strong{display:block;font-size:0.7rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:3px;}
+.cc-text span{font-size:0.9rem;font-weight:600;color:var(--brown);}
+.form-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:2.2rem;}
+.form-card h4{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;color:var(--green);margin-bottom:1.8rem;}
+.f-row{margin-bottom:1.2rem;}
+.f-row label{display:block;font-size:0.72rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:7px;}
+.f-row input,.f-row textarea,.f-row select{width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--cream);color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.9rem;outline:none;transition:border 0.2s;}
+.f-row input:focus,.f-row textarea:focus,.f-row select:focus{border-color:var(--green3);background:#fff;}
+.f-row textarea{min-height:110px;resize:vertical;}
+.f-grid2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.btn-submit{width:100%;padding:14px;background:var(--green);color:#fff;font-weight:700;font-size:0.9rem;border:none;border-radius:8px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.25s;margin-top:0.5rem;}
+.btn-submit:hover{background:var(--green2);transform:translateY(-1px);}
+
+footer{background:var(--brown);padding:3rem 4rem 2rem;color:rgba(255,255,255,0.6);}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:3rem;margin-bottom:2.5rem;padding-bottom:2.5rem;border-bottom:1px solid rgba(255,255,255,0.1);}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:700;color:#fff;}
+.footer-logo span{display:block;font-size:0.7rem;font-weight:400;color:rgba(255,255,255,0.4);letter-spacing:1.5px;text-transform:uppercase;font-family:'DM Sans',sans-serif;margin-top:2px;}
+.footer-brand p{font-size:0.82rem;line-height:1.7;margin-top:1rem;color:rgba(255,255,255,0.4);}
+.footer-col h5{font-size:0.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:1rem;}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:0.6rem;}
+.footer-col ul li a{color:rgba(255,255,255,0.55);text-decoration:none;font-size:0.85rem;transition:color 0.2s;}
+.footer-col ul li a:hover{color:#fff;}
+.footer-col ul li{font-size:0.85rem;}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;font-size:0.78rem;}
+
+@media(max-width:900px){
+  nav{padding:0 1.5rem;}
+  .nav-links{display:none;}
+  .hero{grid-template-columns:1fr;padding:7rem 2rem 4rem;}
+  .hero-right{display:none;}
+  .prod-grid{grid-template-columns:1fr;}
+  .diff-grid{grid-template-columns:1fr 1fr;}
+  .negozio-grid,.cont-grid{grid-template-columns:1fr;}
+  .stage-row{grid-template-columns:1fr 1fr;}
+  .footer-grid{grid-template-columns:1fr;}
+  .sec,.stagioni{padding:5rem 2rem;}
+  .f-grid2{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo-wrap">
+    <img class="logo-img"
+      src="https://images.unsplash.com/photo-1528821128474-27f963b062bf?w=80&q=80"
+      alt="Ciliege Ferrovia Romanazzi">
+    <div class="logo-text">F.lli Romanazzi <span>Azienda Agricola · Turi, Puglia</span></div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#prodotti">Prodotti</a></li>
+    <li><a href="#negozio">Il Negozio</a></li>
+    <li><a href="#stagioni">Stagioni</a></li>
+    <li><a href="#contatti">Ordini</a></li>
+  </ul>
+  <a href="#contatti" class="nav-cta">Ordina ora</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div style="position:relative;z-index:1;">
+    <div class="hero-tag">🌾 Dal 1978 · Turi, Puglia</div>
+    <h1>La frutta<br>più buona<br><em>della Puglia</em></h1>
+    <p class="hero-desc">Tre generazioni di passione e dedizione per la terra. Coltiviamo le migliori ciliege Ferrovia, albicocche e percoche nei terreni argillosi di Turi, raccogliendo ogni frutto a mano al momento giusto.</p>
+    <div class="hero-btns">
+      <a href="#contatti" class="btn-primary">Fai un ordine</a>
+      <a href="#prodotti" class="btn-ghost">I nostri prodotti</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat"><div class="hstat-n">22</div><div class="hstat-l">Ettari coltivati</div></div>
+      <div class="hstat"><div class="hstat-n">3</div><div class="hstat-l">Generazioni</div></div>
+      <div class="hstat"><div class="hstat-n">100%</div><div class="hstat-l">Raccolta a mano</div></div>
+      <div class="hstat"><div class="hstat-n">46+</div><div class="hstat-l">Anni di esperienza</div></div>
+    </div>
+  </div>
+  <div style="position:relative;z-index:1;">
+    <div class="hero-fruit-grid">
+      <div class="fruit-card-hero">
+        <img class="fch-img"
+          src="https://images.unsplash.com/photo-1528821128474-27f963b062bf?w=900&q=85"
+          alt="Ciliege Ferrovia di Turi rosse">
+        <div class="fch-label">
+          <span class="fch-name">Ciliege Ferrovia</span>
+          <span class="fch-season">Mag – Giu</span>
+        </div>
+      </div>
+      <div class="fruit-card-hero">
+        <img class="fch-img-small"
+          src="https://images.unsplash.com/photo-1594735907641-4a4b5f56a6a0?w=600&q=85"
+          alt="Albicocche pugliesi fresche">
+        <div class="fch-label">
+          <span class="fch-name">Albicocche</span>
+          <span class="fch-season">Giu – Lug</span>
+        </div>
+      </div>
+      <div class="fruit-card-hero">
+        <img class="fch-img-small"
+          src="https://images.unsplash.com/photo-1580052614034-c55d20bfee3b?w=600&q=85"
+          alt="Percoche gialle pugliesi">
+        <div class="fch-label">
+          <span class="fch-name">Percoche</span>
+          <span class="fch-season">Lug – Ago</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODOTTI -->
+<section class="sec prodotti" id="prodotti">
+  <div class="sec-inner">
+    <p class="sec-tag">I nostri prodotti</p>
+    <h2 class="sec-title">Tre eccellenze pugliesi</h2>
+    <p class="sec-sub">Ogni frutto che coltiviamo ha una storia, un sapore e una stagione precisa. Scopri cosa rende i nostri prodotti unici nel panorama frutticolo pugliese.</p>
+    <div class="prod-grid">
+
+      <div class="prod-card">
+        <div class="prod-img-wrap">
+          <img src="https://images.unsplash.com/photo-1528821128474-27f963b062bf?w=700&q=85" alt="Ciliege Ferrovia di Turi">
+          <div class="prod-img-overlay"></div>
+        </div>
+        <div class="prod-body">
+          <span class="prod-badge badge-red">Varietà Ferrovia · IGP</span>
+          <h3>Ciliege di Turi</h3>
+          <p>La Ciliegia Ferrovia è il simbolo di Turi e dell'intera Puglia. Il nome nasce dalla leggenda che i primi alberi germogliarono lungo i binari ferroviari. Oggi è tra le ciliege più pregiate d'Italia e del mondo.</p>
+          <ul class="prod-features">
+            <li>Calibro extra-large, tra i più grandi in Italia (26–32 mm)</li>
+            <li>Polpa soda, croccante e succosa, resistente agli ammaccamenti</li>
+            <li>Colore rosso-bordeaux intenso, lucido e brillante</li>
+            <li>Sapore dolce-acidulo equilibrato e inconfondibile</li>
+            <li>Raccolta a mano con picciolo intatto per massima freschezza</li>
+            <li>Riconoscimento IGP: origine 100% certificata da Turi</li>
+          </ul>
+          <div class="prod-season">📅 Stagione: Maggio – Giugno</div>
+        </div>
+      </div>
+
+      <div class="prod-card">
+        <div class="prod-img-wrap">
+          <img src="https://images.unsplash.com/photo-1594735907641-4a4b5f56a6a0?w=700&q=85" alt="Albicocche fresche pugliesi mature">
+          <div class="prod-img-overlay"></div>
+        </div>
+        <div class="prod-body">
+          <span class="prod-badge badge-orange">Varietà Pugliese</span>
+          <h3>Albicocche</h3>
+          <p>Le nostre albicocche maturano lentamente sotto il sole estivo pugliese, sviluppando un profumo intenso e un sapore dolcissimo che le distingue nettamente dalle varietà del nord. Perfette fresche o per trasformazione.</p>
+          <ul class="prod-features">
+            <li>Buccia vellutata, giallo-arancio con sfumature rosse al sole</li>
+            <li>Polpa morbida, compatta e straordinariamente profumata</li>
+            <li>Alta concentrazione zuccherina naturale (Brix 16–18)</li>
+            <li>Seme facilmente separabile dalla polpa (spiccace)</li>
+            <li>Ideali per confetture, essiccazione e consumo fresco</li>
+            <li>Raccolte al giusto grado di maturazione, mai forzate</li>
+          </ul>
+          <div class="prod-season">📅 Stagione: Giugno – Luglio</div>
+        </div>
+      </div>
+
+      <div class="prod-card">
+        <div class="prod-img-wrap">
+          <img src="https://images.unsplash.com/photo-1580052614034-c55d20bfee3b?w=700&q=85" alt="Percoche gialle pugliesi compatte">
+          <div class="prod-img-overlay"></div>
+        </div>
+        <div class="prod-body">
+          <span class="prod-badge badge-yellow">Varietà Meridionale</span>
+          <h3>Percoche</h3>
+          <p>La percoca è la pesca tipica del Sud Italia, con polpa gialla, compatta e fibrosa che non si disfa. Il suo sapore deciso e aromatico la rende unica e molto ricercata sia fresca che per la lavorazione sott'olio.</p>
+          <ul class="prod-features">
+            <li>Polpa gialla, soda e fibrosa: non si spappolano mai</li>
+            <li>Aroma intenso e persistente tipico delle varietà meridionali</li>
+            <li>Aderente al nocciolo (duracine): ideale per la lavorazione</li>
+            <li>Perfette per percoche sott'olio, liquori e marmellate</li>
+            <li>Coltivate senza acceleratori di maturazione</li>
+            <li>Conservazione superiore rispetto alle pesche comuni</li>
+          </ul>
+          <div class="prod-season">📅 Stagione: Luglio – Agosto</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- DIFFERENZE -->
+<section class="sec differenze" id="differenze">
+  <div class="sec-inner">
+    <p class="sec-tag">Perché sceglierci</p>
+    <h2 class="sec-title">La differenza Romanazzi</h2>
+    <p class="sec-sub">Non siamo solo un'azienda agricola. Siamo custodi di un territorio e di una tradizione che dura da quasi mezzo secolo.</p>
+    <div class="diff-grid">
+      <div class="diff-card">
+        <img class="diff-card-img" src="https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=400&q=80" alt="Natura e terra pugliese">
+        <div class="diff-card-body">
+          <h4>Coltivazione naturale</h4>
+          <p>Tecniche agronomiche rispettose dell'ambiente, riduzione al minimo dei fitofarmaci e biodiversità nei nostri 22 ettari di terreno argilloso rosso.</p>
+        </div>
+      </div>
+      <div class="diff-card">
+        <img class="diff-card-img" src="https://images.unsplash.com/photo-1599707367072-cd6ada2bc375?w=400&q=80" alt="Raccolta a mano ciliege">
+        <div class="diff-card-body">
+          <h4>Raccolta a mano</h4>
+          <p>Ogni frutto viene selezionato e colto manualmente dai nostri raccoglitori esperti. Nessuna macchina tocca la nostra frutta prima che arrivi a te.</p>
+        </div>
+      </div>
+      <div class="diff-card">
+        <img class="diff-card-img" src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=400&q=80" alt="Frutta fresca mercato">
+        <div class="diff-card-body">
+          <h4>Freschezza garantita</h4>
+          <p>Dal campo al banco in meno di 24 ore. Il nostro fruttivendolo su Via Casamassima ti offre prodotti raccolti il giorno stesso.</p>
+        </div>
+      </div>
+      <div class="diff-card">
+        <img class="diff-card-img" src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=400&q=80" alt="Vendita diretta frutta">
+        <div class="diff-card-body">
+          <h4>Vendita diretta</h4>
+          <p>Eliminiamo gli intermediari: acquistando da noi paghi il giusto prezzo e ottieni la qualità massima, direttamente dai produttori.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEGOZIO -->
+<section class="sec negozio" id="negozio">
+  <div class="sec-inner">
+    <p class="sec-tag">Dove trovarci</p>
+    <h2 class="sec-title">Il nostro fruttivendolo</h2>
+    <div class="negozio-grid">
+      <div class="negozio-photo">
+        <img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=900&q=85" alt="Fruttivendolo F.lli Romanazzi Turi">
+        <div class="negozio-photo-overlay"></div>
+        <span class="negozio-photo-tag">Vendita diretta dal produttore</span>
+        <div class="negozio-photo-caption">
+          <h4>F.lli Romanazzi</h4>
+          <p>Circonvallazione Via Casamassima · Turi (BA)</p>
+        </div>
+      </div>
+      <div class="negozio-info">
+        <h3>Vieni a trovarci a Turi</h3>
+        <p>Il nostro punto vendita diretto si trova sulla Circonvallazione Via Casamassima a Turi. Qui puoi acquistare la nostra frutta di stagione appena raccolta, parlare direttamente con i produttori e scoprire le novità del momento.</p>
+        <p>Offriamo anche la possibilità di effettuare ordini all'ingrosso per ristoranti, mercati rionali e privati con consegna in tutta Italia durante il periodo di produzione.</p>
+        <div class="info-blocks">
+          <div class="info-block">
+            <span class="info-block-icon">📍</span>
+            <div class="info-block-text">
+              <strong>Indirizzo</strong>
+              <span>Circonvallazione Via Casamassima, Turi (BA) 70010</span>
+            </div>
+          </div>
+          <div class="info-block">
+            <span class="info-block-icon">⏰</span>
+            <div class="info-block-text">
+              <strong>Orari di apertura</strong>
+              <span>Lun – Sab: 7:00 – 13:00 · 16:00 – 20:00 · Dom: 7:00 – 13:00</span>
+            </div>
+          </div>
+          <div class="info-block">
+            <span class="info-block-icon">📦</span>
+            <div class="info-block-text">
+              <strong>Ordini all'ingrosso</strong>
+              <span>Disponibili durante la stagione · Consegna in tutta Italia</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STAGIONI -->
+<section class="stagioni" id="stagioni">
+  <div style="max-width:1080px;margin:0 auto;">
+    <p class="sec-tag">Calendario del raccolto</p>
+    <h2 class="sec-title">Ogni frutto, al momento giusto</h2>
+    <p class="sec-sub">La natura ha i suoi ritmi. Noi li rispettiamo. Ecco quando trovare i nostri prodotti freschi.</p>
+    <div class="stage-row">
+      <div class="stage-col">
+        <img class="stage-col-img" src="https://images.unsplash.com/photo-1528821128474-27f963b062bf?w=400&q=80" alt="Ciliege Ferrovia Maggio">
+        <div class="stage-month">Maggio</div>
+        <div class="stage-fruit">Ciliege Ferrovia</div>
+        <div class="stage-sub">Inizia la stagione più attesa. Prime ciliege dalla raccolta mattutina. Disponibili in cassetta su prenotazione.</div>
+        <div class="stage-bar bar-red"></div>
+      </div>
+      <div class="stage-col">
+        <img class="stage-col-img" src="https://images.unsplash.com/photo-1528821128474-27f963b062bf?w=400&q=80" alt="Ciliege e Albicocche Giugno">
+        <div class="stage-month">Giugno</div>
+        <div class="stage-fruit">Ciliege & Albicocche</div>
+        <div class="stage-sub">Il mese clou: ciliege al massimo della maturazione e prime albicocche. Produzione intensa, disponibilità elevata.</div>
+        <div class="stage-bar bar-mix"></div>
+      </div>
+      <div class="stage-col">
+        <img class="stage-col-img" src="https://images.unsplash.com/photo-1594735907641-4a4b5f56a6a0?w=400&q=80" alt="Albicocche e Percoche Luglio">
+        <div class="stage-month">Luglio</div>
+        <div class="stage-fruit">Albicocche & Percoche</div>
+        <div class="stage-sub">Le albicocche raggiungono il loro apice. Le prime percoche compaiono con la loro polpa compatta e aromatica.</div>
+        <div class="stage-bar bar-orange"></div>
+      </div>
+      <div class="stage-col">
+        <img class="stage-col-img" src="https://images.unsplash.com/photo-1580052614034-c55d20bfee3b?w=400&q=80" alt="Percoche Agosto">
+        <div class="stage-month">Agosto</div>
+        <div class="stage-fruit">Percoche</div>
+        <div class="stage-sub">La percoca protagonista dell'estate. Stagione breve ma intensa, ideale fresca o per preparare conserve e sott'olio.</div>
+        <div class="stage-bar bar-yellow"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATTI -->
+<section class="sec contatti" id="contatti">
+  <div class="sec-inner">
+    <p class="sec-tag">Ordini e contatti</p>
+    <h2 class="sec-title">Scrivici o chiamaci</h2>
+    <p class="sec-sub">Per ordini all'ingrosso, informazioni sui prodotti o qualsiasi domanda, siamo a tua disposizione.</p>
+    <div class="cont-grid">
+      <div class="cont-left">
+        <h3>Fratelli Romanazzi</h3>
+        <p>Siamo disponibili per ordini diretti, forniture per mercati e ristoranti e acquisti privati. Contattateci prima dell'inizio della stagione per prenotare la quantità desiderata.</p>
+        <div class="contact-cards">
+          <a href="tel:+393896160427" class="contact-card">
+            <div class="cc-icon green">📞</div>
+            <div class="cc-text">
+              <strong>Telefono / WhatsApp</strong>
+              <span>+39 389 616 0427</span>
+            </div>
+          </a>
+          <a href="mailto:fratelliromanazzi@gmail.com" class="contact-card">
+            <div class="cc-icon orange">✉️</div>
+            <div class="cc-text">
+              <strong>Email</strong>
+              <span>fratelliromanazzi@gmail.com</span>
+            </div>
+          </a>
+          <div class="contact-card">
+            <div class="cc-icon red">📍</div>
+            <div class="cc-text">
+              <strong>Negozio diretto</strong>
+              <span>Circonvallazione Via Casamassima, Turi (BA)</span>
+            </div>
+          </div>
+          <div class="contact-card">
+            <div class="cc-icon green">⏰</div>
+            <div class="cc-text">
+              <strong>Orari negozio</strong>
+              <span>Lun–Sab 7:00–13:00 · 16:00–20:00 · Dom 7:00–13:00</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-card">
+        <h4>Richiedi un ordine</h4>
+        <div class="f-grid2">
+          <div class="f-row">
+            <label>Nome</label>
+            <input type="text" placeholder="Mario">
+          </div>
+          <div class="f-row">
+            <label>Cognome</label>
+            <input type="text" placeholder="Rossi">
+          </div>
+        </div>
+        <div class="f-row">
+          <label>Telefono / Email</label>
+          <input type="text" placeholder="+39 000 000 0000 oppure email">
+        </div>
+        <div class="f-row">
+          <label>Prodotto di interesse</label>
+          <select>
+            <option value="">Seleziona...</option>
+            <option>Ciliege Ferrovia</option>
+            <option>Albicocche</option>
+            <option>Percoche</option>
+            <option>Più prodotti</option>
+          </select>
+        </div>
+        <div class="f-row">
+          <label>Messaggio e quantità richiesta</label>
+          <textarea placeholder="Indicaci la quantità in kg o cassette, la destinazione e qualsiasi altra informazione utile..."></textarea>
+        </div>
+        <button class="btn-submit">Invia la tua richiesta</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">F.lli Romanazzi <span>Azienda Agricola · Turi, Puglia</span></div>
+      <p>Dal 1978 coltiviamo con passione e rispetto la frutta più buona della Puglia. Tre generazioni, una sola missione: portare sulle vostre tavole il sapore autentico della nostra terra.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Prodotti</h5>
+      <ul>
+        <li><a href="#prodotti">Ciliege Ferrovia</a></li>
+        <li><a href="#prodotti">Albicocche</a></li>
+        <li><a href="#prodotti">Percoche</a></li>
+        <li><a href="#stagioni">Calendario stagionale</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contatti</h5>
+      <ul>
+        <li>📞 +39 389 616 0427</li>
+        <li>✉️ fratelliromanazzi@gmail.com</li>
+        <li>📍 Circ.ne Via Casamassima, Turi</li>
+        <li><a href="#contatti">Fai un ordine →</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 F.lli Romanazzi — Azienda Agricola, Turi (BA)</span>
+    <span>P.IVA da aggiungere</span>
+  </div>
+</footer>
+
+</body>
+</html>
 
